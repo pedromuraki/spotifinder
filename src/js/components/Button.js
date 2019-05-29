@@ -1,0 +1,26 @@
+/* REACT */
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
+
+const Button =
+  styled.button.attrs(props => ({
+    type: props.type
+  }))`
+    background: transparent;
+    border-radius: 3px;
+    border: 2px solid palevioletred;
+    color: palevioletred;
+    margin: 0 1em;
+    padding: 0.25em 1em;
+    ${props => props.primary && css`
+      background: palevioletred;
+      color: white;
+    `};
+  `
+
+Button.propTypes = {
+  type: PropTypes.string.isRequired
+}
+
+export default Button
