@@ -1,16 +1,17 @@
 /* REACT */
 import React from 'react'
 
-/* ROUTER */
-// import { Switch, Route, Link } from 'react-router-dom';
-
-import Search from './Search'
+/* COMPONENTS */
+import Header from './components/Header'
+import Content from './components/Content'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
     <>
-      <h1>App</h1>
-      <Search />
+      <Header />
+      <Content />
+      <Footer />
     </>
   )
 }

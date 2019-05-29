@@ -1,10 +1,10 @@
 /* REACT */
-import React from 'react';
+import React from 'react'
 import { render } from 'react-dom'
 
 /* ROUTER */
-// import { Router } from 'react-router-dom';
-// import history from './router/history';
+import { Router } from 'react-router-dom'
+import history from './router/history'
 
 /* REDUX */
 // import { Provider } from 'react-redux';
@@ -24,9 +24,11 @@ import '../scss/index.scss'
 
 render(
   // <Provider store={store}>
-  //   <Router history={history}>
-  <App />,
-  //   </Router>
+  <>
+    <Router history={history}>
+      <App />
+    </Router>
+  </>,
   // </Provider>,
   document.getElementById('app')
 )
