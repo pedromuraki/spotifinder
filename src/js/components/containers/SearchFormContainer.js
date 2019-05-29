@@ -2,9 +2,9 @@
 import React from 'react'
 
 /* COMPONENTS */
-import SearchForm from './SearchForm'
+import SearchForm from '../components/SearchForm'
 
-class Search extends React.Component {
+class SearchFormContainer extends React.Component {
   constructor() {
     super()
 
@@ -37,4 +37,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search
+export default SearchFormContainer
