@@ -2,13 +2,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 
 /* REDUCERS */
-import searchResults from './searchResults'
+// import searchResults from './searchResults'
+import token from './token'
 
 // import { composeWithDevTools } from 'redux-devtools-extension'
 // import { someMiddleware } from '../actions/index'
 
 const combinedReducers = combineReducers({
-  searchResults
+  // searchResults
+  token
 })
 
 const store = createStore(

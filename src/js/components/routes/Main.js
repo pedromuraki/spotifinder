@@ -4,10 +4,10 @@ import React from 'react'
 /* CONTAINERS */
 import SearchContainer from '../containers/SearchContainer'
 
-const Main = ({ token }) => {
+const Main = () => {
   return (
     <>
-      <SearchContainer token={token} />
+      <SearchContainer />
     </>
   )
 }

@@ -1,6 +1,9 @@
 /* REACT */
 import React from 'react'
 
+/* REDUX */
+import { connect } from 'react-redux'
+
 /* CONTAINERS */
 import FormContainer from './FormContainer'
 import ResultsList from '../components/ResultsList'
@@ -9,7 +12,14 @@ import ResultsList from '../components/ResultsList'
 import axios from 'axios'
 
 /* CONFIG */
-import { API_URL } from '../../config/spotifyApi'
+import { API_URL, AUTH_URL } from '../../config/spotifyApi'
+
+/* REDUCERS */
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  }
+}
 
 class SearchContainer extends React.Component {
   constructor() {
@@ -51,7 +61,14 @@ class SearchContainer extends React.Component {
       headers: {
         Authorization: 'Bearer ' + this.props.token
       }
-    }).then(res => console.log(res))
+    })
+      .then(res => console.log(res))
+      .catch(err => {
+        console.log(err)
+        console.log(err.response)
+        // alert('Your authorization has expired. You will be redirected to Spotify to grant permission again.')
+        // window.location.href = AUTH_URL
+      })
   }
 
   render() {
@@ -68,4 +85,4 @@ class SearchContainer extends React.Component {
   }
 }
 
-export default SearchContainer
+export default connect(mapStateToProps)(SearchContainer)
