@@ -6,14 +6,20 @@ import PropTypes from 'prop-types'
 import Input from './Input'
 import Button from './Button'
 
-export const Form = ({ handleSubmit, handleChange, inputs, btnText }) => {
+export const Form = ({
+  handleSubmit,
+  handleChange,
+  inputs,
+  values,
+  btnText
+}) => {
   return (
     <form onSubmit={handleSubmit}>
       {inputs.map(input => (
         <Input
           inputName={input.inputName}
           inputType={input.inputType}
-          inputValue={input.inputValue}
+          inputValue={values[input.inputName]}
           handleChange={handleChange}
           inputPlaceholder={input.inputPlaceholder}
           inputIsRequired={input.inputIsRequired}

@@ -6,15 +6,19 @@ import PropTypes from 'prop-types'
 import Form from '../components/Form'
 
 class FormContainer extends React.Component {
-  constructor() {
+  constructor(props) {
     super()
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
 
     this.state = {
-      values: {}
+      values: this.setInitialValues(props.inputs)
     }
+  }
+
+  setInitialValues(inputs) {
+    return inputs.reduce((acc, cur) => ({ ...acc, [cur.inputName]: '' }), {})
   }
 
   handleChange(e) {
@@ -30,19 +34,9 @@ class FormContainer extends React.Component {
 
     this.props.handleSubmit(this.state.values)
 
-    this.setState({ values: {} })
-  }
-
-  getInputs() {
-    const { values } = this.state
-
-    return this.props.inputs.map(input => ({
-      inputName: input.inputName,
-      inputType: input.inputType,
-      inputPlaceholder: input.inputPlaceholder,
-      inputValue: values[input.inputName] || '',
-      inputIsRequired: input.inputIsRequired
-    }))
+    this.setState({
+      values: this.setInitialValues(this.props.inputs)
+    })
   }
 
   render() {
@@ -50,7 +44,8 @@ class FormContainer extends React.Component {
       <Form
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
-        inputs={this.getInputs()}
+        inputs={this.props.inputs}
+        values={this.state.values}
         btnText={this.props.btnText}
       />
     )
