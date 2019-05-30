@@ -1,10 +1,11 @@
 /* REACT */
 import React from 'react'
+import PropTypes from 'prop-types'
 
 /* COMPONENTS */
 import Form from '../components/Form'
 
-class SearchFormContainer extends React.Component {
+class FormContainer extends React.Component {
   constructor() {
     super()
 
@@ -27,7 +28,7 @@ class SearchFormContainer extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    console.log(this.state.values.search)
+    this.props.handleSubmit(this.state.values)
 
     this.setState({ values: {} })
   }
@@ -35,14 +36,12 @@ class SearchFormContainer extends React.Component {
   getInputs() {
     const { values } = this.state
 
-    return [
-      {
-        inputName: 'search',
-        inputType: 'text',
-        inputPlaceholder: 'Search for an album or a track...',
-        inputValue: values['search'] || ''
-      }
-    ]
+    return this.props.inputs.map(input => ({
+      inputName: input.inputName,
+      inputType: input.inputType,
+      inputPlaceholder: input.inputPlaceholder,
+      inputValue: values[input.inputName] || ''
+    }))
   }
 
   render() {
@@ -51,10 +50,16 @@ class SearchFormContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         inputs={this.getInputs()}
-        btnText="Search"
+        btnText={this.props.btnText}
       />
     )
   }
 }
 
-export default SearchFormContainer
+FormContainer.propTypes = {
+  inputs: PropTypes.array.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  btnText: PropTypes.string.isRequired
+}
+
+export default FormContainer
