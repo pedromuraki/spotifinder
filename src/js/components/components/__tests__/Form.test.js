@@ -18,16 +18,19 @@ describe('<Form />', () => {
       inputName: 'search',
       inputType: 'text',
       inputPlaceholder: 'Search for an album or a track...',
-      inputIsRequired: true,
-      inputValue: ''
+      inputIsRequired: true
     },
     {
       inputName: 'email',
       inputType: 'email',
-      inputPlaceholder: 'Type your e-mail...',
-      inputValue: ''
+      inputPlaceholder: 'Type your e-mail...'
     }
   ]
+
+  const values = {
+    search: '',
+    email: ''
+  }
 
   beforeEach(() => {
     mockHandleSubmit = jest.fn()
@@ -37,6 +40,7 @@ describe('<Form />', () => {
         handleSubmit={mockHandleSubmit}
         handleChange={() => {}}
         inputs={inputItems}
+        values={values}
         btnText="Submit"
       />
     )

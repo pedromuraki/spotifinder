@@ -36,6 +36,7 @@ Form.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   inputs: PropTypes.array.isRequired,
+  values: PropTypes.object.isRequired,
   btnText: PropTypes.string.isRequired
 }
 
