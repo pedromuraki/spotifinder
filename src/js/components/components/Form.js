@@ -17,21 +17,13 @@ export const Form = ({
 }) => {
   return (
     <form onSubmit={handleFormSubmit} className={className}>
-      {/* <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputValueChange}
-        placeholder={inputPlaceholder}
-      /> */}
       <Input
         inputType="text"
         inputValue={inputValue}
         handleInputValueChange={handleInputValueChange}
         inputPlaceholder={inputPlaceholder}
       />
-      <Button primary type="submit">
-        {btnText}
-      </Button>
+      <Button btnType="submit" btnText={btnText} />
     </form>
   )
 }
