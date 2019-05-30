@@ -7,7 +7,8 @@ const Input = ({
   inputType,
   inputValue,
   handleChange,
-  inputPlaceholder
+  inputPlaceholder,
+  inputIsRequired
 }) => (
   <input
     name={inputName}
@@ -15,6 +16,7 @@ const Input = ({
     value={inputValue}
     onChange={handleChange}
     placeholder={inputPlaceholder}
+    required={inputIsRequired}
   />
 )
 

@@ -40,7 +40,8 @@ class FormContainer extends React.Component {
       inputName: input.inputName,
       inputType: input.inputType,
       inputPlaceholder: input.inputPlaceholder,
-      inputValue: values[input.inputName] || ''
+      inputValue: values[input.inputName] || '',
+      inputIsRequired: input.inputIsRequired
     }))
   }
 

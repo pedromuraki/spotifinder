@@ -16,6 +16,7 @@ export const Form = ({ handleSubmit, handleChange, inputs, btnText }) => {
           inputValue={input.inputValue}
           handleChange={handleChange}
           inputPlaceholder={input.inputPlaceholder}
+          inputIsRequired={input.inputIsRequired}
           key={input.inputName}
         />
       ))}

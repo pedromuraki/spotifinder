@@ -2,14 +2,15 @@
 import React from 'react'
 
 /* CONTAINERS */
-import FormContainer from '../containers/FormContainer'
+import FormContainer from './FormContainer'
 
 const Search = () => {
   const inputs = [
     {
       inputName: 'search',
       inputType: 'text',
-      inputPlaceholder: 'Search for an album or a track...'
+      inputPlaceholder: 'Search for an album or a track...',
+      inputIsRequired: true
     }
   ]
 

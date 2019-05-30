@@ -2,7 +2,7 @@
 import React from 'react'
 
 /* COMPONENTS / CONTAINERS */
-import Search from '../components/Search'
+import Search from '../containers/Search'
 import ResultsContainer from '../containers/ResultsContainer'
 
 const Main = () => {
