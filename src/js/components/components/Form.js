@@ -1,47 +1,35 @@
 /* REACT */
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 /* COMPONENTS */
 import Input from './Input'
 import Button from './Button'
 
-export const Form = ({
-  handleFormSubmit,
-  inputValue,
-  handleInputValueChange,
-  inputPlaceholder,
-  btnText,
-  className
-}) => {
+export const Form = ({ handleSubmit, handleChange, inputs, btnText }) => {
   return (
-    <form onSubmit={handleFormSubmit} className={className}>
-      <Input
-        inputType="text"
-        inputValue={inputValue}
-        handleInputValueChange={handleInputValueChange}
-        inputPlaceholder={inputPlaceholder}
-      />
+    <form onSubmit={handleSubmit}>
+      {inputs.map(input => (
+        <Input
+          inputName={input.inputName}
+          inputType={input.inputType}
+          inputValue={input.inputValue}
+          handleChange={handleChange}
+          inputPlaceholder={input.inputPlaceholder}
+          key={input.inputName}
+        />
+      ))}
+
       <Button btnType="submit" btnText={btnText} />
     </form>
   )
 }
 
 Form.propTypes = {
-  handleFormSubmit: PropTypes.func,
-  className: PropTypes.string,
-  inputValue: PropTypes.string,
-  handleInputValueChange: PropTypes.func
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  inputs: PropTypes.array.isRequired,
+  btnText: PropTypes.string.isRequired
 }
 
 export default Form
-
-// const StyledForm = styled(Form)`
-//   input {
-//     border: 2px solid #000;
-//     border-radius: 5px;
-//   }
-// `
-
-// export default StyledForm

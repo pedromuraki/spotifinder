@@ -8,31 +8,49 @@ class SearchFormContainer extends React.Component {
   constructor() {
     super()
 
-    this.handleInputValueChange = this.handleInputValueChange.bind(this)
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
 
-    this.state = { inputValue: '' }
+    this.state = {
+      values: {}
+    }
   }
 
-  handleInputValueChange(e) {
-    this.setState({ inputValue: e.target.value })
+  handleChange(e) {
+    const target = e.target
+
+    this.setState({
+      values: { ...this.state.values, [target.name]: target.value }
+    })
   }
 
-  handleFormSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault()
 
-    console.log(this.state.inputValue)
+    console.log(this.state.values.search)
 
-    this.setState({ inputValue: '' })
+    this.setState({ values: {} })
+  }
+
+  getInputs() {
+    const { values } = this.state
+
+    return [
+      {
+        inputName: 'search',
+        inputType: 'text',
+        inputPlaceholder: 'Search for an album or a track...',
+        inputValue: values['search'] || ''
+      }
+    ]
   }
 
   render() {
     return (
       <Form
-        handleFormSubmit={this.handleFormSubmit}
-        inputValue={this.state.inputValue}
-        handleInputValueChange={this.handleInputValueChange}
-        inputPlaceholder="Search for an album or a track..."
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        inputs={this.getInputs()}
         btnText="Search"
       />
     )
