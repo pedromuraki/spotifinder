@@ -5,9 +5,17 @@ import React from 'react'
 import FormContainer from './FormContainer'
 import ResultsList from '../components/ResultsList'
 
+/* HELPERS */
+import axios from 'axios'
+
+/* CONFIG */
+import { API_URL } from '../../config/spotifyApi'
+
 class SearchContainer extends React.Component {
   constructor() {
     super()
+
+    this.handleSubmit = this.handleSubmit.bind(this)
 
     this.inputs = [
       {
@@ -35,7 +43,15 @@ class SearchContainer extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log(values)
+    const { search } = values
+
+    axios({
+      method: 'GET',
+      url: `${API_URL}/search?query=${search}&type=album,track&offset=0&limit=5`,
+      headers: {
+        Authorization: 'Bearer ' + this.props.token
+      }
+    }).then(res => console.log(res))
   }
 
   render() {
