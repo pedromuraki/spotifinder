@@ -4,30 +4,37 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 /* COMPONENTS */
+import Input from './Input'
 import Button from './Button'
 
-export const Form = props => {
+export const Form = ({
+  handleFormSubmit,
+  inputValue,
+  handleInputValueChange,
+  inputPlaceholder,
+  btnText,
+  className
+}) => {
   return (
-    <form onSubmit={props.handleFormSubmit} className={props.className}>
-      <input
+    <form onSubmit={handleFormSubmit} className={className}>
+      {/* <input
         type="text"
-        value={props.inputValue}
-        onChange={props.handleInputValueChange}
-        placeholder={props.inputPlaceholder}
+        value={inputValue}
+        onChange={handleInputValueChange}
+        placeholder={inputPlaceholder}
+      /> */}
+      <Input
+        inputType="text"
+        inputValue={inputValue}
+        handleInputValueChange={handleInputValueChange}
+        inputPlaceholder={inputPlaceholder}
       />
       <Button primary type="submit">
-        {props.btnText}
+        {btnText}
       </Button>
     </form>
   )
 }
-
-const StyledForm = styled(Form)`
-  input {
-    border: 2px solid #000;
-    border-radius: 5px;
-  }
-`
 
 Form.propTypes = {
   handleFormSubmit: PropTypes.func,
@@ -36,4 +43,13 @@ Form.propTypes = {
   handleInputValueChange: PropTypes.func
 }
 
-export default StyledForm
+export default Form
+
+// const StyledForm = styled(Form)`
+//   input {
+//     border: 2px solid #000;
+//     border-radius: 5px;
+//   }
+// `
+
+// export default StyledForm
