@@ -6,33 +6,34 @@ import styled from 'styled-components'
 /* COMPONENTS */
 import Button from './Button'
 
-const SearchForm = props => {
+export const Form = props => {
   return (
     <form onSubmit={props.handleFormSubmit} className={props.className}>
       <input
         type="text"
-        placeholder="Search for..."
         value={props.inputValue}
         onChange={props.handleInputValueChange}
+        placeholder={props.inputPlaceholder}
       />
-      <Button primary type="submit">Search</Button>
+      <Button primary type="submit">
+        {props.btnText}
+      </Button>
     </form>
   )
 }
 
-const StyledSearchForm = styled(SearchForm)`
+const StyledForm = styled(Form)`
   input {
     border: 2px solid #000;
     border-radius: 5px;
   }
 `
 
-SearchForm.propTypes = {
+Form.propTypes = {
   handleFormSubmit: PropTypes.func,
   className: PropTypes.string,
   inputValue: PropTypes.string,
   handleInputValueChange: PropTypes.func
 }
-// https://www.npmjs.com/package/prop-types
 
-export default StyledSearchForm
+export default StyledForm
