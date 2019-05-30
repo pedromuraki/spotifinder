@@ -2,7 +2,7 @@
 import React from 'react'
 
 /* COMPONENTS */
-import SearchForm from '../components/SearchForm'
+import Form from '../components/Form'
 
 class SearchFormContainer extends React.Component {
   constructor() {
@@ -28,10 +28,12 @@ class SearchFormContainer extends React.Component {
 
   render() {
     return (
-      <SearchForm
+      <Form
         handleFormSubmit={this.handleFormSubmit}
         inputValue={this.state.inputValue}
         handleInputValueChange={this.handleInputValueChange}
+        inputPlaceholder="Search for an album or a track..."
+        btnText="Search"
       />
     )
   }
