@@ -1,39 +1,43 @@
 /* REACT */
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 /* COMPONENTS */
+import Input from './Input'
 import Button from './Button'
 
-export const Form = props => {
+export const Form = ({
+  handleSubmit,
+  handleChange,
+  inputs,
+  values,
+  btnText
+}) => {
   return (
-    <form onSubmit={props.handleFormSubmit} className={props.className}>
-      <input
-        type="text"
-        value={props.inputValue}
-        onChange={props.handleInputValueChange}
-        placeholder={props.inputPlaceholder}
-      />
-      <Button primary type="submit">
-        {props.btnText}
-      </Button>
+    <form onSubmit={handleSubmit}>
+      {inputs.map(input => (
+        <Input
+          inputName={input.inputName}
+          inputType={input.inputType}
+          inputValue={values[input.inputName]}
+          handleChange={handleChange}
+          inputPlaceholder={input.inputPlaceholder}
+          inputIsRequired={input.inputIsRequired}
+          key={input.inputName}
+        />
+      ))}
+
+      <Button btnType="submit" btnText={btnText} />
     </form>
   )
 }
 
-const StyledForm = styled(Form)`
-  input {
-    border: 2px solid #000;
-    border-radius: 5px;
-  }
-`
-
 Form.propTypes = {
-  handleFormSubmit: PropTypes.func,
-  className: PropTypes.string,
-  inputValue: PropTypes.string,
-  handleInputValueChange: PropTypes.func
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  inputs: PropTypes.array.isRequired,
+  values: PropTypes.object.isRequired,
+  btnText: PropTypes.string.isRequired
 }
 
-export default StyledForm
+export default Form

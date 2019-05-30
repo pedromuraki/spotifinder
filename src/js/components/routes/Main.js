@@ -1,14 +1,14 @@
 /* REACT */
 import React from 'react'
 
-/* CONTAINERS */
-import SearchFormContainer from '../containers/SearchFormContainer'
+/* COMPONENTS / CONTAINERS */
+import Search from '../containers/Search'
 import ResultsContainer from '../containers/ResultsContainer'
 
 const Main = () => {
   return (
     <>
-      <SearchFormContainer />
+      <Search />
       <ResultsContainer />
     </>
   )

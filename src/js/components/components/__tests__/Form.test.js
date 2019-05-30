@@ -5,71 +5,74 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 /* COMPONENTS */
-import { Form } from '../Form'
+import Form from '../Form'
+import Input from '../Input'
 import Button from '../Button'
 
 describe('<Form />', () => {
   let wrapper
+  let mockHandleSubmit
+
+  const inputItems = [
+    {
+      inputName: 'search',
+      inputType: 'text',
+      inputPlaceholder: 'Search for an album or a track...',
+      inputIsRequired: true
+    },
+    {
+      inputName: 'email',
+      inputType: 'email',
+      inputPlaceholder: 'Type your e-mail...'
+    }
+  ]
+
+  const values = {
+    search: '',
+    email: ''
+  }
 
   beforeEach(() => {
-    wrapper = shallow(<Form />)
+    mockHandleSubmit = jest.fn()
+
+    wrapper = shallow(
+      <Form
+        handleSubmit={mockHandleSubmit}
+        handleChange={() => {}}
+        inputs={inputItems}
+        values={values}
+        btnText="Submit"
+      />
+    )
   })
 
-  it('Should render Form', () => {
-    shallow(<Form />)
+  it('Should render Input\'s components based on "inputs" prop length', () => {
+    const inputs = wrapper.find(Input)
+    expect(inputs.length).toBe(inputItems.length)
   })
 
-  it('Should render a form element', () => {
-    const form = wrapper.find('form')
-    expect(form.length).toBe(1)
+  it('Should render Input\'s components with the correct props based on "inputs" prop', () => {
+    const inputs = wrapper.find(Input)
+
+    expect(inputs.at(0).props().inputName).toBe('search')
+    expect(inputs.at(0).props().inputType).toBe('text')
+    expect(inputs.at(0).props().inputPlaceholder).toBe(
+      'Search for an album or a track...'
+    )
+    expect(inputs.at(0).props().inputIsRequired).toBe(true)
+    expect(inputs.at(0).props().inputValue).toBe('')
   })
 
-  it('Should render a text input element', () => {
-    const input = wrapper.find('form').find('input[type="text"]')
-    expect(input.length).toBe(1)
-  })
-
-  it('Should render a Button component with type "submit" and "Search" as text content', () => {
-    const wrapper = shallow(<Form btnText="Search" />)
-    const button = wrapper.find('form').find(Button)
+  it('Should render a Button component with "btnText" prop inherited from Form', () => {
+    const button = wrapper.find(Button)
     expect(button.length).toBe(1)
-    expect(button.props().type).toBe('submit')
-    expect(button.text()).toBe('Search')
+    expect(button.props().btnText).toBe('Submit')
   })
 
-  it('Should call "handleFormSubmit" prop on form submit', () => {
-    const mockOnSubmit = jest.fn()
-    const wrapper = shallow(<Form handleFormSubmit={mockOnSubmit} />)
-
+  it('Should call the function passed as "handleSubmit" prop on form submit', () => {
     const form = wrapper.find('form')
     form.simulate('submit')
 
-    expect(mockOnSubmit).toHaveBeenCalledTimes(1)
-  })
-
-  it('Should receive the input value from "inputValue" prop', () => {
-    const wrapper = shallow(<Form inputValue="My input value." />)
-
-    const input = wrapper.find('input[type="text"]')
-
-    expect(input.props().value).toBe('My input value.')
-  })
-
-  it('Should call "handleInputValueChange" prop on text input change', () => {
-    const mockOnChange = jest.fn()
-    const wrapper = shallow(<Form handleInputValueChange={mockOnChange} />)
-
-    const input = wrapper.find('input[type="text"]')
-    input.simulate('change')
-
-    expect(mockOnChange).toHaveBeenCalledTimes(1)
-  })
-
-  it('Should receive the placeholder value from "inputPlaceholder" prop', () => {
-    const wrapper = shallow(<Form inputPlaceholder="My placeholder." />)
-
-    const input = wrapper.find('input[type="text"]')
-
-    expect(input.props().placeholder).toBe('My placeholder.')
+    expect(mockHandleSubmit).toHaveBeenCalledTimes(1)
   })
 })
