@@ -10,16 +10,10 @@ import ResultsList from '../components/ResultsList'
 
 /* HELPERS */
 import axios from 'axios'
+import { refreshTokenIfExpired } from '../../helpers'
 
 /* CONFIG */
-import { API_URL, AUTH_URL } from '../../config/spotifyApi'
-
-/* REDUCERS */
-const mapStateToProps = state => {
-  return {
-    token: state.token
-  }
-}
+import { API_URL } from '../../config/spotifyApi'
 
 class SearchContainer extends React.Component {
   constructor() {
@@ -63,12 +57,7 @@ class SearchContainer extends React.Component {
       }
     })
       .then(res => console.log(res))
-      .catch(err => {
-        console.log(err)
-        console.log(err.response)
-        // alert('Your authorization has expired. You will be redirected to Spotify to grant permission again.')
-        // window.location.href = AUTH_URL
-      })
+      .catch(refreshTokenIfExpired)
   }
 
   render() {
@@ -85,4 +74,8 @@ class SearchContainer extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(SearchContainer)
+export default connect(state => {
+  return {
+    token: state.token
+  }
+})(SearchContainer)

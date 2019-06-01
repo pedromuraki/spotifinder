@@ -18,13 +18,6 @@ import { AUTH_URL } from '../config/spotifyApi'
 /* ACTION CREATORS */
 import { setToken } from '../reducers/token/action-creators'
 
-/* REDUCERS */
-const mapStateToProps = state => {
-  return {
-    token: state.token
-  }
-}
-
 class App extends React.Component {
   componentDidMount() {
     // If coming from auth url...
@@ -59,6 +52,10 @@ class App extends React.Component {
 }
 
 export default connect(
-  mapStateToProps,
+  state => {
+    return {
+      token: state.token
+    }
+  },
   { setToken }
 )(App)
