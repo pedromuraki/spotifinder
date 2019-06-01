@@ -8,12 +8,8 @@ import { connect } from 'react-redux'
 import FormContainer from './FormContainer'
 import ResultsList from '../components/ResultsList'
 
-/* HELPERS */
-import axios from 'axios'
-import { refreshTokenIfExpired } from '../../helpers'
-
-/* CONFIG */
-import { API_URL } from '../../config/spotifyApi'
+/* ACTION CREATORS */
+import { search } from '../../reducers/results/action-creators'
 
 class SearchContainer extends React.Component {
   constructor() {
@@ -23,7 +19,7 @@ class SearchContainer extends React.Component {
 
     this.inputs = [
       {
-        inputName: 'search',
+        inputName: 'searchQuery',
         inputType: 'text',
         inputPlaceholder: 'Search for an album or a track...',
         inputIsRequired: true
@@ -47,17 +43,7 @@ class SearchContainer extends React.Component {
   }
 
   handleSubmit(values) {
-    const { search } = values
-
-    axios({
-      method: 'GET',
-      url: `${API_URL}/search?query=${search}&type=album,track&offset=0&limit=5`,
-      headers: {
-        Authorization: 'Bearer ' + this.props.token
-      }
-    })
-      .then(res => console.log(res))
-      .catch(refreshTokenIfExpired)
+    this.props.search(values.searchQuery, this.props.token)
   }
 
   render() {
@@ -74,8 +60,11 @@ class SearchContainer extends React.Component {
   }
 }
 
-export default connect(state => {
-  return {
-    token: state.token
-  }
-})(SearchContainer)
+export default connect(
+  state => {
+    return {
+      token: state.token
+    }
+  },
+  { search }
+)(SearchContainer)

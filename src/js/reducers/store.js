@@ -1,22 +1,20 @@
 /* REDUX */
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { middleware as reduxPackMiddleware } from 'redux-pack'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 /* REDUCERS */
-// import searchResults from './searchResults'
 import token from './token'
-
-// import { composeWithDevTools } from 'redux-devtools-extension'
-// import { someMiddleware } from '../actions/index'
+import results from './results'
 
 const combinedReducers = combineReducers({
-  // searchResults
-  token
+  token,
+  results
 })
 
 const store = createStore(
   combinedReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  // composeWithDevTools(applyMiddleware(someMiddleware))
+  composeWithDevTools(applyMiddleware(reduxPackMiddleware))
 )
 
 export default store
