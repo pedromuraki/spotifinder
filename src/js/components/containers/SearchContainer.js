@@ -1,5 +1,6 @@
 /* REACT */
 import React from 'react'
+import PropTypes from 'prop-types'
 
 /* REDUX */
 import { connect } from 'react-redux'
@@ -43,6 +44,11 @@ class SearchContainer extends React.Component {
       </>
     )
   }
+}
+
+SearchContainer.propTypes = {
+  search: PropTypes.func,
+  token: PropTypes.string
 }
 
 export default connect(

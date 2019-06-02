@@ -53,8 +53,12 @@ const ResultsList = ({ albums, tracks, loadNext, token, query, isLoading }) => {
 }
 
 ResultsList.propTypes = {
+  loadNext: PropTypes.func.isRequired,
   albums: PropTypes.object,
-  tracks: PropTypes.object
+  tracks: PropTypes.object,
+  token: PropTypes.string,
+  query: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired
 }
 
 export default connect(

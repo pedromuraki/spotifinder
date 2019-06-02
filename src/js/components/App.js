@@ -1,5 +1,6 @@
 /* REACT */
 import React from 'react'
+import PropTypes from 'prop-types'
 
 /* REDUX */
 import { connect } from 'react-redux'
@@ -51,6 +52,11 @@ class App extends React.Component {
       </>
     )
   }
+}
+
+App.propTypes = {
+  setToken: PropTypes.func,
+  token: PropTypes.string
 }
 
 export default connect(
