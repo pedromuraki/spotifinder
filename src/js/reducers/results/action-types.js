@@ -1,1 +1,2 @@
 export const UPDATE_RESULTS = 'UPDATE_RESULTS'
+export const ADD_RESULTS = 'ADD_RESULTS'

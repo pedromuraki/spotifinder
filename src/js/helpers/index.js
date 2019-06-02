@@ -1,8 +1,8 @@
 /* CONFIG */
 import { AUTH_URL } from '../config/spotifyApi'
 
-export const refreshTokenIfExpired = err => {
-  if (err.response.status === 401) {
+export const refreshTokenIfExpired = status => {
+  if (status === 401) {
     alert(
       'Your authorization has expired. You will be redirected to Spotify to grant permission again.'
     )

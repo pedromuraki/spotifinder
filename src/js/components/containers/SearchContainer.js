@@ -25,21 +25,6 @@ class SearchContainer extends React.Component {
         inputIsRequired: true
       }
     ]
-
-    this.state = {
-      results: [
-        {
-          img: 'aaa',
-          title: 'Álbum 1',
-          artist: 'The Clash'
-        },
-        {
-          img: 'bbb',
-          title: 'Testessss',
-          artist: 'Ramones'
-        }
-      ]
-    }
   }
 
   handleSubmit(values) {
@@ -54,7 +39,7 @@ class SearchContainer extends React.Component {
           handleSubmit={this.handleSubmit}
           btnText="Search"
         />
-        <ResultsList results={this.state.results} />
+        <ResultsList />
       </>
     )
   }
