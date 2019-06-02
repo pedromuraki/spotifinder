@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 /* REDUX */
 import { connect } from 'react-redux'
 
-const Loading = ({ isLoading }) => {
+export const Loading = ({ isLoading }) => {
   return (
     <>
       {isLoading && (
