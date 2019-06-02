@@ -20,16 +20,18 @@ import { AUTH_URL } from '../config/spotifyApi'
 /* ACTION CREATORS */
 import { setToken } from '../reducers/token/action-creators'
 
-class App extends React.Component {
+export class App extends React.Component {
   componentDidMount() {
     // If coming from auth url...
     if (history.location.hash.slice(0, 13) === '#access_token') {
-      // Set the 'token' reducer and localStorage using the returning auth url as ref
+      // Set the 'token' reducer using the returning auth url as ref
       const token = history.location.hash
         .replace(/#access_token=/, '')
         .replace(/&token_type=Bearer&expires_in=3600/, '')
 
       this.props.setToken(token)
+
+      // Set 'token' in localStorage
       localStorage.setItem('token', token)
 
       // Push to main route to clear the returning auth url
@@ -39,7 +41,7 @@ class App extends React.Component {
     }
 
     // If token does not exist, send to auth url
-    if (!this.props.token) window.location.href = AUTH_URL
+    if (!this.props.token) location.assign(AUTH_URL) // window.location.href = AUTH_URL
   }
 
   render() {
