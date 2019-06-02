@@ -11,6 +11,7 @@ import history from '../router/history'
 import Header from './components/Header'
 import Content from './components/Content'
 import Footer from './components/Footer'
+import Loading from './components/Loading'
 
 /* CONFIG */
 import { AUTH_URL } from '../config/spotifyApi'
@@ -46,6 +47,7 @@ class App extends React.Component {
         <Header />
         <Content />
         <Footer />
+        <Loading />
       </>
     )
   }

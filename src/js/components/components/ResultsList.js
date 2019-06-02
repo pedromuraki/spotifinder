@@ -12,7 +12,7 @@ import Button from './Button'
 /* ACTION CREATORS */
 import { loadNext } from '../../reducers/results/action-creators'
 
-const ResultsList = ({ albums, tracks, loadNext, token, query }) => {
+const ResultsList = ({ albums, tracks, loadNext, token, query, isLoading }) => {
   const resultsByCat = (cat, label) => {
     const hasItems = cat.items && cat.items.length > 0
     return (
@@ -20,7 +20,8 @@ const ResultsList = ({ albums, tracks, loadNext, token, query }) => {
         <h1>
           {query ? `Results for "${query}" in ${label}` : `Results in ${label}`}
         </h1>
-        {hasItems ? (
+
+        {hasItems &&
           cat.items.map(item => (
             <ResultCard
               img={item.album ? item.album.images[0].url : item.images[0].url}
@@ -28,14 +29,14 @@ const ResultsList = ({ albums, tracks, loadNext, token, query }) => {
               artists={item.artists[0].name}
               key={item.id}
             />
-          ))
-        ) : (
-          <p>No results to show</p>
-        )}
+          ))}
+
+        {!hasItems && !isLoading && <p>No results to show.</p>}
+
         {cat.next ? (
           <Button
             btnType="button"
-            btnText="Load more"
+            btnText="Show more..."
             handleClick={() => loadNext(cat.next, token)}
           />
         ) : null}
