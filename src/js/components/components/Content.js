@@ -2,7 +2,7 @@
 import React from 'react'
 
 /* ROUTER */
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Main from '../routes/Main'
 import Album from '../routes/Album'
 

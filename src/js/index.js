@@ -7,8 +7,8 @@ import { Router } from 'react-router-dom'
 import history from './router/history'
 
 /* REDUX */
-// import { Provider } from 'react-redux';
-// import store from './reducers/store';
+import { Provider } from 'react-redux'
+import store from './reducers/store'
 
 /* APP */
 import App from './components/App'
@@ -23,12 +23,10 @@ import '../scss/index.scss'
 // importAll(require.context('../img/', true, /\.(jpe?g|png|gif)$/));
 
 render(
-  // <Provider store={store}>
-  <>
+  <Provider store={store}>
     <Router history={history}>
       <App />
     </Router>
-  </>,
-  // </Provider>,
+  </Provider>,
   document.getElementById('app')
 )

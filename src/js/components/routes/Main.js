@@ -1,15 +1,13 @@
 /* REACT */
 import React from 'react'
 
-/* COMPONENTS / CONTAINERS */
-import Search from '../containers/Search'
-import ResultsContainer from '../containers/ResultsContainer'
+/* CONTAINERS */
+import SearchContainer from '../containers/SearchContainer'
 
 const Main = () => {
   return (
     <>
-      <Search />
-      <ResultsContainer />
+      <SearchContainer />
     </>
   )
 }
