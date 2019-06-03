@@ -12,7 +12,7 @@ import ResultsList from '../components/ResultsList'
 /* ACTION CREATORS */
 import { search } from '../../reducers/results/action-creators'
 
-class SearchContainer extends React.Component {
+export class SearchContainer extends React.Component {
   constructor() {
     super()
 
