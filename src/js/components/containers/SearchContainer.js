@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 /* CONTAINERS */
 import FormContainer from './FormContainer'
-import ResultsList from '../components/ResultsList'
+import Results from '../components/Results'
 
 /* ACTION CREATORS */
 import { search } from '../../reducers/results/action-creators'
@@ -40,7 +40,7 @@ export class SearchContainer extends React.Component {
           handleSubmit={this.handleSubmit}
           btnText="Search"
         />
-        <ResultsList />
+        <Results />
       </>
     )
   }
