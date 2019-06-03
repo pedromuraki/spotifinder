@@ -12,7 +12,6 @@ import store from './reducers/store'
 
 /* APP */
 import App from './components/App'
-import '../scss/index.scss'
 
 /* SERVICE WORKER */
 // import registerServiceWorker from './config/registerServiceWorker';
@@ -22,10 +21,16 @@ import '../scss/index.scss'
 // const importAll = r => r.keys().forEach(r);
 // importAll(require.context('../img/', true, /\.(jpe?g|png|gif)$/));
 
+/* STYLES */
+import GlobalStyle from './styles/globalStyle'
+
 render(
   <Provider store={store}>
     <Router history={history}>
-      <App />
+      <>
+        <GlobalStyle />
+        <App />
+      </>
     </Router>
   </Provider>,
   document.getElementById('app')

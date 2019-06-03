@@ -24,10 +24,11 @@ export const Form = ({
           inputPlaceholder={input.inputPlaceholder}
           inputIsRequired={input.inputIsRequired}
           key={input.inputName}
+          size="lg"
         />
       ))}
 
-      <Button btnType="submit" btnText={btnText} />
+      <Button btnType="submit" btnText={btnText} size="lg" />
     </form>
   )
 }
