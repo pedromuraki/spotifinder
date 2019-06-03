@@ -12,7 +12,14 @@ import Button from './Button'
 /* ACTION CREATORS */
 import { loadNext } from '../../reducers/results/action-creators'
 
-const ResultsList = ({ albums, tracks, loadNext, token, query, isLoading }) => {
+export const ResultsList = ({
+  albums,
+  tracks,
+  loadNext,
+  token,
+  query,
+  isLoading
+}) => {
   const resultsByCat = (cat, label) => {
     const hasItems = cat.items && cat.items.length > 0
     return (
@@ -54,8 +61,8 @@ const ResultsList = ({ albums, tracks, loadNext, token, query, isLoading }) => {
 
 ResultsList.propTypes = {
   loadNext: PropTypes.func.isRequired,
-  albums: PropTypes.object,
-  tracks: PropTypes.object,
+  albums: PropTypes.object.isRequired,
+  tracks: PropTypes.object.isRequired,
   token: PropTypes.string,
   query: PropTypes.string,
   isLoading: PropTypes.bool.isRequired
