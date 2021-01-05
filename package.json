@@ -22,7 +22,7 @@
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
     "autoprefixer": "^9.5.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.0",
     "css-loader": "^1.0.1",
